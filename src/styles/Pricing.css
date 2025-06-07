@@ -1,0 +1,25 @@
+/* src/styles/Pricing.css */
+
+/* General layout of the Pricing Page */
+.pricing-page {
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+  }
+  
+  .pricing-page h1 {
+    font-size: 3rem;
+    color: #2c3e50; /* Dark blue for the header */
+    margin-bottom: 40px;
+  }
+  
+  /* Container for pricing cards */
+  .pricing-container {
+    display: flex;
+    justify-content: center; /* Center the cards */
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  

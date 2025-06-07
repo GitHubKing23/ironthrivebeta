@@ -1,0 +1,30 @@
+/* src/styles/AboutSection.css */
+.about-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f4a261 20%, #2c3e50 80%); /* Gradient background */
+  }
+  
+  .about-section h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  
+  .about-section p {
+    font-size: 1.25rem;
+    color: white;
+    max-width: 800px;
+    margin: 0 auto 30px;
+  }
+  
+  @media (max-width: 768px) {
+    .about-section p {
+      font-size: 1.125rem;
+    }
+  }
+  
