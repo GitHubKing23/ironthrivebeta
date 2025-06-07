@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Installation
+
+Run `npm install` before starting the development server or running tests. This installs the project's dependencies, including `@testing-library/jest-dom` used in the test suite.
+
 ## Available Scripts
 
 In the project directory, you can run:
