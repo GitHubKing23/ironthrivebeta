@@ -18,6 +18,11 @@
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.affiliate-item:hover {
+  transform: translateY(-4px);
 }
 
 .affiliate-item img {

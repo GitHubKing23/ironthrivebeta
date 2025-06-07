@@ -2,6 +2,9 @@
   max-width: 800px;
   margin: 40px auto;
   padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .affiliate-form {
@@ -26,6 +29,11 @@
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.affiliate-form button:hover {
+  background-color: #2980b9;
 }
 
 .affiliate-list {
@@ -39,6 +47,13 @@
   padding: 15px;
   border-radius: 8px;
   text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.affiliate-item:hover {
+  transform: translateY(-4px);
 }
 
 .affiliate-item img {
