@@ -1,0 +1,22 @@
+.weight-loss-tool {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.bmi-form input {
+  margin: 0 10px 10px;
+  padding: 10px;
+  width: 150px;
+}
+
+.bmi-form button {
+  padding: 10px 20px;
+}
+
+.bmi-result {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
