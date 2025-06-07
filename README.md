@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Affiliate CMS
+
+The app includes a simple admin page to manage affiliate products. Click **Admin** in the navigation bar to add new products with a name, image, description, and link. These entries are saved in your browser's localStorage and displayed on the Affiliates page.
+
+## Aesthetic Updates
+
+Roboto fonts and a subtle background gradient provide a cleaner look. The Affiliates grid features hover effects and improved spacing for better readability.
