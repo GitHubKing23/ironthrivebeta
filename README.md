@@ -76,3 +76,7 @@ The app includes a simple admin page to manage affiliate products. Click **Admin
 ## Aesthetic Updates
 
 Roboto fonts and a subtle background gradient provide a cleaner look. The Affiliates grid features hover effects and improved spacing for better readability.
+
+## Development Notes
+
+Run `npm install` after cloning to ensure all dependencies are present before starting or testing the application.
