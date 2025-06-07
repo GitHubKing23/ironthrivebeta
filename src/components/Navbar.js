@@ -25,9 +25,12 @@ const Navbar = () => {
         {/* Navbar Links */}
         <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
           <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-          <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li> {/* Added About link */}
+          <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
           <li><Link to="/pricing" onClick={() => setIsMenuOpen(false)}>Pricing</Link></li>
           <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
+          <li><Link to="/tool" onClick={() => setIsMenuOpen(false)}>BMI Tool</Link></li>
+          <li><Link to="/affiliates" onClick={() => setIsMenuOpen(false)}>Affiliates</Link></li>
+          <li><Link to="/affiliate-cms" onClick={() => setIsMenuOpen(false)}>Admin</Link></li>
           <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
         </ul>
       </div>
