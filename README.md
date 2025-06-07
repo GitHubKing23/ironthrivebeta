@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Pre-flight Checklist
+
+Before starting development or creating a production build, make sure the
+following steps have been completed:
+
+1. **Node.js** – Use Node.js 18 or newer.
+2. **Install dependencies** – run `npm install` in the project root.
+3. **Run tests** – execute `npm test -- --watchAll=false` to verify the setup.
+
+After these steps you can run `npm start` for local development or
+`npm run build` to create a production build.
+
 ## Available Scripts
 
 In the project directory, you can run:
