@@ -9,12 +9,9 @@ import SignUp from './pages/SignUp';
 import About from './pages/About';
 import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
-<<<<<<< ours
 import WeightLossTool from './pages/WeightLossTool';
 import Affiliates from './pages/Affiliates';
-=======
-import ReserveCall from './pages/ReserveCall';
->>>>>>> theirs
+import AffiliateCMS from './pages/AffiliateCMS';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -32,14 +29,12 @@ function App() {
 
 // A new component to handle page view logging
 const AppContent = () => {
-  const location = useLocation(); // useLocation hook to track route changes
+  const location = useLocation();
 
-  // Initialize Google Analytics only once when the component mounts
   useEffect(() => {
     initGA();
   }, []);
 
-  // Log page view whenever the location changes
   useEffect(() => {
     logPageView();
   }, [location]);
@@ -52,12 +47,9 @@ const AppContent = () => {
       <Route path="/blog" element={<Blog />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/contact" element={<Contact />} />
-<<<<<<< ours
       <Route path="/tool" element={<WeightLossTool />} />
       <Route path="/affiliates" element={<Affiliates />} />
-=======
-      <Route path="/reserve-call" element={<ReserveCall />} />
->>>>>>> theirs
+      <Route path="/affiliate-cms" element={<AffiliateCMS />} />
     </Routes>
   );
 }
