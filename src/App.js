@@ -9,8 +9,12 @@ import SignUp from './pages/SignUp';
 import About from './pages/About';
 import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
+<<<<<<< ours
 import WeightLossTool from './pages/WeightLossTool';
 import Affiliates from './pages/Affiliates';
+=======
+import ReserveCall from './pages/ReserveCall';
+>>>>>>> theirs
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -48,8 +52,12 @@ const AppContent = () => {
       <Route path="/blog" element={<Blog />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/contact" element={<Contact />} />
+<<<<<<< ours
       <Route path="/tool" element={<WeightLossTool />} />
       <Route path="/affiliates" element={<Affiliates />} />
+=======
+      <Route path="/reserve-call" element={<ReserveCall />} />
+>>>>>>> theirs
     </Routes>
   );
 }
