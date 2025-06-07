@@ -81,4 +81,7 @@ Roboto fonts and a subtle background gradient provide a cleaner look. The Affili
 
 Run `npm install` after cloning to ensure all dependencies are present before starting or testing the application.
 
+This project is **frontend only**. The Affiliate CMS stores data in the browser's
+localStorage, so no server or backend setup is required.
+
 The `docs/affiliates_cms.patch` file contains the full diff introducing the Affiliate CMS and aesthetic improvements, while `docs/wireframe.md` provides a high-level diagram of the current layout.
