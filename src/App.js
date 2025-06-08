@@ -11,11 +11,7 @@ import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import WeightLossTool from './pages/WeightLossTool';
 import Affiliates from './pages/Affiliates';
-import AffiliateCMS from './pages/AffiliateCMS';
-<<<<<<< ours
-=======
-import BlogCMS from './pages/BlogCMS';
->>>>>>> theirs
+import AffiliateCMS from './pages/AffiliateCMS'; // ✅ Newly added import
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -33,12 +29,14 @@ function App() {
 
 // A new component to handle page view logging
 const AppContent = () => {
-  const location = useLocation();
+  const location = useLocation(); // useLocation hook to track route changes
 
+  // Initialize Google Analytics only once when the component mounts
   useEffect(() => {
     initGA();
   }, []);
 
+  // Log page view whenever the location changes
   useEffect(() => {
     logPageView();
   }, [location]);
@@ -53,11 +51,7 @@ const AppContent = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/tool" element={<WeightLossTool />} />
       <Route path="/affiliates" element={<Affiliates />} />
-      <Route path="/affiliate-cms" element={<AffiliateCMS />} />
-<<<<<<< ours
-=======
-      <Route path="/blog-cms" element={<BlogCMS />} />
->>>>>>> theirs
+      <Route path="/affiliate-cms" element={<AffiliateCMS />} /> {/* ✅ New route */}
     </Routes>
   );
 }
