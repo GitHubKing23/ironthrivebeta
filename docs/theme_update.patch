@@ -1,0 +1,92 @@
+From 3d2aac88b8936e7f6063d034b1a63ad97ef094c4 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.com>
+Date: Sat, 7 Jun 2025 22:38:37 +0000
+Subject: [PATCH] Refine theme with CSS variables
+
+---
+ src/components/Navbar.css | 31 ++++++++++++++++---------------
+ src/index.css             | 10 +++++++++-
+ 2 files changed, 25 insertions(+), 16 deletions(-)
+
+diff --git a/src/components/Navbar.css b/src/components/Navbar.css
+index 14f55b5..655f136 100644
+--- a/src/components/Navbar.css
++++ b/src/components/Navbar.css
+@@ -1,6 +1,7 @@
+ /* src/components/Navbar.css */
+ .navbar {
+-    background-color: rgba(44, 62, 80, 0.9); /* Dark Blue with transparency */
++    background-color: rgba(44, 62, 80, 0.9); /* Fallback color */
++    background-color: rgba(var(--color-primary-rgb, 44, 62, 80), 0.9);
+     backdrop-filter: blur(8px);
+     padding: 15px 20px;
+     position: fixed;
+@@ -31,9 +32,9 @@
+     margin-left: 30px; /* Adjust left margin to move the title to the left */
+   }
+   
+-  .navbar-logo:hover {
+-    color: #f4a261; /* Accent Color on Hover */
+-  }
++  .navbar-logo:hover {
++    color: var(--color-accent); /* Accent Color on Hover */
++  }
+   
+   .navbar-links {
+     list-style-type: none;
+@@ -46,18 +47,18 @@
+     position: relative;
+   }
+   
+-  .navbar-links a {
+-    color: #ffffff;
+-    text-decoration: none;
+-    font-size: 18px;
+-    font-weight: 500;
+-    transition: color 0.3s ease, transform 0.3s ease;
+-  }
++  .navbar-links a {
++    color: #ffffff;
++    text-decoration: none;
++    font-size: 18px;
++    font-weight: 500;
++    transition: color 0.3s ease, transform 0.3s ease;
++  }
+   
+-  .navbar-links a:hover {
+-    color: #f4a261; /* Accent Color */
+-    transform: translateY(-3px);
+-  }
++  .navbar-links a:hover {
++    color: var(--color-accent); /* Accent Color */
++    transform: translateY(-3px);
++  }
+   
+   /* Mobile Hamburger Menu */
+   .hamburger {
+diff --git a/src/index.css b/src/index.css
+index ed972cb..911328e 100644
+--- a/src/index.css
++++ b/src/index.css
+@@ -1,9 +1,17 @@
++:root {
++  --color-primary: #2c3e50;
++  --color-primary-rgb: 44, 62, 80;
++  --color-accent: #f4a261;
++  --color-background-start: #f0f4f8;
++  --color-background-end: #ffffff;
++}
++
+ body {
+   margin: 0;
+   font-family: 'Roboto', sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+-  background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
++  background: linear-gradient(180deg, var(--color-background-start) 0%, var(--color-background-end) 100%);
+ }
+ 
+ code {
+-- 
+2.43.0
+
