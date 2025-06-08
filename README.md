@@ -85,3 +85,18 @@ This project is **frontend only**. The Affiliate CMS stores data in the browser'
 localStorage, so no server or backend setup is required.
 
 The `docs/affiliates_cms.patch` file contains the full diff introducing the Affiliate CMS and aesthetic improvements, while `docs/wireframe.md` provides a high-level diagram of the current layout.
+
+## Managing Blog Posts
+
+Blog articles live in `src/pages/Blog.js` as an array of post objects. Each post
+includes an `id`, `title`, `summary`, and `fullContent` field. Simply edit this
+file and add a new object to the array to publish a new article. Reload the
+development server to see your changes.
+
+## Managing Affiliate Products
+
+Use the **Admin** link in the navigation bar (path `/affiliate-cms`) to open the
+Affiliate CMS. Fill out the form to add a product name, image URL, description,
+and purchase link. Items are saved in your browser's `localStorage` and will
+appear on the Affiliates page. You can remove an entry by clicking its **Delete**
+button or by clearing browser storage.
