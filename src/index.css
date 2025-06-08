@@ -2,6 +2,10 @@
   --color-primary: #2c3e50;
   --color-primary-rgb: 44, 62, 80;
   --color-accent: #f4a261;
+<<<<<<< ours
+=======
+  --color-accent-dark: #e76f51;
+>>>>>>> theirs
   --color-background-start: #f0f4f8;
   --color-background-end: #ffffff;
 }
@@ -12,7 +16,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(180deg, var(--color-background-start) 0%, var(--color-background-end) 100%);
+<<<<<<< ours
 
+=======
+>>>>>>> theirs
 }
 
 code {

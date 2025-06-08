@@ -12,6 +12,10 @@ import Contact from './pages/Contact';
 import WeightLossTool from './pages/WeightLossTool';
 import Affiliates from './pages/Affiliates';
 import AffiliateCMS from './pages/AffiliateCMS';
+<<<<<<< ours
+=======
+import BlogCMS from './pages/BlogCMS';
+>>>>>>> theirs
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -50,6 +54,10 @@ const AppContent = () => {
       <Route path="/tool" element={<WeightLossTool />} />
       <Route path="/affiliates" element={<Affiliates />} />
       <Route path="/affiliate-cms" element={<AffiliateCMS />} />
+<<<<<<< ours
+=======
+      <Route path="/blog-cms" element={<BlogCMS />} />
+>>>>>>> theirs
     </Routes>
   );
 }

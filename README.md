@@ -86,6 +86,7 @@ localStorage, so no server or backend setup is required.
 
 The `docs/affiliates_cms.patch` file contains the full diff introducing the Affiliate CMS and aesthetic improvements, while `docs/wireframe.md` provides a high-level diagram of the current layout.
 <<<<<<< ours
+<<<<<<< ours
 =======
 See `docs/patch_summary.md` for a table describing each stored patch.
 >>>>>>> theirs
@@ -96,6 +97,16 @@ Blog articles live in `src/pages/Blog.js` as an array of post objects. Each post
 includes an `id`, `title`, `summary`, and `fullContent` field. Simply edit this
 file and add a new object to the array to publish a new article. Reload the
 development server to see your changes.
+=======
+See `docs/patch_summary.md` for a table describing each stored patch.
+
+## Managing Blog Posts
+
+Open the **Blog Admin** page (`/blog-cms`) to add new posts directly in the browser.
+Fill out the form with a title, summary, and full content. Posts are stored in
+`localStorage` and appear on the Blog page automatically. You can still edit
+`src/pages/Blog.js` to change the default posts shipped with the project.
+>>>>>>> theirs
 
 ## Managing Affiliate Products
 
@@ -104,3 +115,7 @@ Affiliate CMS. Fill out the form to add a product name, image URL, description,
 and purchase link. Items are saved in your browser's `localStorage` and will
 appear on the Affiliates page. You can remove an entry by clicking its **Delete**
 button or by clearing browser storage.
+<<<<<<< ours
+=======
+The admin page is password protected with the password `7vY3p$92q`.
+>>>>>>> theirs
