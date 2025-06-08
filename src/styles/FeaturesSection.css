@@ -4,26 +4,26 @@
     background-color: #ffffff;
     text-align: center;
   }
-  
+
   .features-section h2 {
     font-size: 2.5rem;
     color: #2c3e50;
     margin-bottom: 15px;
   }
-  
+
   .features-section p {
     font-size: 1.25rem;
     color: #555;
     margin-bottom: 30px;
   }
-  
+
   .features {
     display: flex;
     justify-content: space-around;
     gap: 20px;
     flex-wrap: wrap;
   }
-  
+
   .feature-item {
     background-color: #f4f4f4;
     padding: 20px;
@@ -33,27 +33,26 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   }
-  
+
   .feature-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     background-color: #f4a261; /* Accent color on hover */
   }
-  
+
   .feature-item h3 {
     font-size: 1.5rem;
     color: #2c3e50;
   }
-  
+
   .feature-item p {
     font-size: 1rem;
     color: #555;
   }
-  
+
   @media (max-width: 768px) {
     .feature-item {
       width: 100%;
       margin-bottom: 30px;
     }
   }
-  

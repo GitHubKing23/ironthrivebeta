@@ -10,13 +10,13 @@
     max-width: 300px; /* Limit the max width to make it more compact */
     margin-top: 20px; /* Less top margin */
   }
-  
+
   .final-cta h2 {
     font-size: 1.2rem;  /* Smaller font size */
     color: white;
     margin-bottom: 15px;  /* Less space below the heading */
   }
-  
+
   .cta-button {
     background-color: #e76f51;  /* Button color */
     color: white;
@@ -28,14 +28,13 @@
     border: none;
     display: inline-block;
   }
-  
+
   .cta-button:hover {
     background-color: #d64c3b;  /* Darker color on hover */
     transform: translateY(-2px);  /* Slightly lift the button */
   }
-  
+
   .cta-button:active {
     background-color: #c85e38;  /* Even darker color when clicked */
     transform: translateY(0);  /* Remove the lift effect on click */
   }
-  

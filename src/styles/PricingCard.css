@@ -14,13 +14,13 @@
     position: relative;
     overflow: hidden;
   }
-  
+
   /* Hover effect for pricing cards */
   .pricing-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   }
-  
+
   /* Title inside pricing card */
   .pricing-card h2 {
     font-size: 2.5rem;
@@ -28,7 +28,7 @@
     margin-bottom: 20px;
     font-weight: 700;
   }
-  
+
   /* Pricing info (price and duration) */
   .pricing-info {
     font-size: 1.5rem;
@@ -39,24 +39,24 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .pricing-info .price {
     font-size: 2.5rem;
     margin-right: 10px;
   }
-  
+
   .pricing-info .duration {
     font-size: 1.2rem;
     color: #333;
   }
-  
+
   .description {
     font-size: 1.125rem;
     color: #555;
     margin-bottom: 30px;
     line-height: 1.6;
   }
-  
+
   /* Updated CTA Button Color */
   .cta-button {
     padding: 15px 40px;
@@ -77,41 +77,40 @@
     visibility: visible;  /* Ensure button is visible */
     z-index: 10;  /* Ensure button is on top */
   }
-  
+
   /* Hover effect for CTA button */
   .cta-button:hover {
     background-color: #2980b9; /* Darker shade of blue for hover */
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   }
-  
+
   /* Mobile responsiveness */
   @media (max-width: 768px) {
     .pricing-page h1 {
       font-size: 2.5rem;
     }
-  
+
     .pricing-container {
       flex-direction: column;
       align-items: center;
     }
-  
+
     .pricing-card {
       width: 90%;
       margin: 10px 0;
     }
-  
+
     .pricing-card h2 {
       font-size: 2rem;
     }
-  
+
     .pricing-info .price {
       font-size: 2rem;
     }
-  
+
     .cta-button {
       font-size: 1.1rem;
       padding: 12px 30px;
     }
   }
-  

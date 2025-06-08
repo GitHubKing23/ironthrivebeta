@@ -12,7 +12,7 @@
     color: white;
     overflow: hidden; /* Prevents any content from overflowing */
   }
-  
+
   .hero::after {
     content: '';
     position: absolute;
@@ -23,7 +23,7 @@
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
     z-index: 1; /* Overlay behind text */
   }
-  
+
   .hero-content {
     position: relative;
     z-index: 2;
@@ -32,7 +32,7 @@
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background to make text readable */
     border-radius: 10px;
   }
-  
+
   .hero-title {
     font-size: 4rem; /* Large text for the headline */
     font-weight: 700;
@@ -41,12 +41,12 @@
     transform: translateY(50px);
     transition: opacity 1s ease, transform 1s ease;
   }
-  
+
   .hero-title.animate-title {
     opacity: 1;
     transform: translateY(0);
   }
-  
+
   .hero-subtitle {
     font-size: 1.5rem;
     margin-bottom: 20px;
@@ -54,12 +54,12 @@
     transform: translateY(50px);
     transition: opacity 1s ease, transform 1s ease;
   }
-  
+
   .hero-subtitle.animate-subtitle {
     opacity: 1;
     transform: translateY(0);
   }
-  
+
   .cta-button {
     font-size: 1.5rem;
     padding: 15px 40px;
@@ -73,30 +73,29 @@
     transform: translateY(50px);
     transition-delay: 0.5s; /* Delay button animation */
   }
-  
+
   .cta-button.animate-button {
     opacity: 1;
     transform: translateY(0);
   }
-  
+
   .cta-button:hover {
     background-color: #e76f51; /* Slightly darker shade on hover */
     transform: translateY(-3px);
   }
-  
+
   /* Responsive design for smaller screens */
   @media (max-width: 768px) {
     .hero-title {
       font-size: 2.5rem; /* Slightly smaller text on smaller screens */
     }
-  
+
     .hero-subtitle {
       font-size: 1.25rem;
     }
-  
+
     .cta-button {
       font-size: 1.25rem;
       padding: 12px 25px;
     }
   }
-  

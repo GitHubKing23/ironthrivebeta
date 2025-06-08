@@ -14,7 +14,7 @@ const ContactForm = () => {
     <div className="contact-page">
       <h1>Contact Us</h1>
       <p>Fill out the form below to register for personal training sessions or ask any questions.</p>
-      
+
       {/* Form Submission */}
       <form onSubmit={handleSubmit} className="contact-form">
         <div className="form-field">

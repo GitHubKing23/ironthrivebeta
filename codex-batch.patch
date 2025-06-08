@@ -32,15 +32,15 @@ index 0000000000000000000000000000000000000000..f40fe9b7e091e5b20dc6a63c29c6255f
 +--- a/README.md
 ++++ b/README.md
 +@@ -2,6 +2,10 @@
-+ 
++
 + This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-+ 
++
 ++## Installation
 ++
 ++Run `npm install` before starting the development server or running tests. This installs the project's dependencies, including `@testing-library/jest-dom` used in the test suite.
 ++
 + ## Available Scripts
-+ 
++
 + In the project directory, you can run:
 +diff --git a/package-lock.json b/package-lock.json
 +index d08f67b..8b21dc5 100644
@@ -616,7 +616,7 @@ index 0000000000000000000000000000000000000000..f40fe9b7e091e5b20dc6a63c29c6255f
 +-import App from './App';
 ++import { MemoryRouter } from 'react-router-dom';
 ++import Home from './pages/Home';
-+ 
++
 +-test('renders learn react link', () => {
 +-  render(<App />);
 +-  const linkElement = screen.getByText(/learn react/i);
@@ -732,6 +732,6 @@ index 0000000000000000000000000000000000000000..f40fe9b7e091e5b20dc6a63c29c6255f
 ++  expect(screen.getByText('Home')).toBeInTheDocument();
 ++  expect(screen.getByText('Pricing')).toBeInTheDocument();
 ++});
-+-- 
++--
 +2.43.0
 +

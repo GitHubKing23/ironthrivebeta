@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import AffiliateCMS from '../AffiliateCMS';
+import * as AffiliateCMSModule from '../AffiliateCMS.jsx';
+const AffiliateCMS = AffiliateCMSModule.default;
 
 test('renders Affiliate CMS heading', () => {
   render(
@@ -10,3 +11,4 @@ test('renders Affiliate CMS heading', () => {
   );
   expect(screen.getByText(/manage affiliates/i)).toBeInTheDocument();
 });
+
