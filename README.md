@@ -85,6 +85,7 @@ This project is **frontend only**. The Affiliate CMS stores data in the browser'
 localStorage, so no server or backend setup is required.
 
 The `docs/affiliates_cms.patch` file contains the full diff introducing the Affiliate CMS and aesthetic improvements, while `docs/wireframe.md` provides a high-level diagram of the current layout.
+See `docs/patch_summary.md` for a table describing each stored patch.
 
 ## Managing Blog Posts
 
