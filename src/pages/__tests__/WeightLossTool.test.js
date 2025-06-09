@@ -10,4 +10,3 @@ test('renders BMI Calculator heading', () => {
   );
   expect(screen.getByText(/bmi calculator/i)).toBeInTheDocument();
 });
-
