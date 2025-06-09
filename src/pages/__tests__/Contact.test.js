@@ -10,4 +10,3 @@ test('renders Contact page heading', () => {
   );
   expect(screen.getByText(/contact us/i)).toBeInTheDocument();
 });
-
