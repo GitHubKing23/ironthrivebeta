@@ -1,10 +1,8 @@
 // src/pages/Blog.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Blog.css'; // Import the CSS file for the Blog page
 
-const Blog = () => {
-  // Sample blog posts with longer content
-  const posts = [
+const defaultPosts = [
     {
       id: 1,
       title: 'The Benefits of Personal Training',
@@ -36,6 +34,19 @@ const Blog = () => {
     },
     // Add more articles as needed
   ];
+
+const Blog = () => {
+  const [posts, setPosts] = useState(defaultPosts);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('blogPosts');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed.length) {
+        setPosts(parsed);
+      }
+    }
+  }, []);
 
   const [readMore, setReadMore] = useState(null); // Track which post has been expanded
 

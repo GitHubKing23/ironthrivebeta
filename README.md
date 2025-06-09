@@ -89,10 +89,10 @@ See `docs/patch_summary.md` for a table describing each stored patch.
 
 ## Managing Blog Posts
 
-Blog articles live in `src/pages/Blog.js` as an array of post objects. Each post
-includes an `id`, `title`, `summary`, and `fullContent` field. Simply edit this
-file and add a new object to the array to publish a new article. Reload the
-development server to see your changes.
+Open the **Blog Admin** page (`/blog-cms`) to add new posts directly in the browser.
+Fill out the form with a title, summary, and full content. Posts are stored in
+`localStorage` and appear on the Blog page automatically. You can still edit
+`src/pages/Blog.js` to change the default posts shipped with the project.
 
 ## Managing Affiliate Products
 

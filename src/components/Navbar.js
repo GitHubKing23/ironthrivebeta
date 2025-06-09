@@ -32,6 +32,7 @@ const Navbar = () => {
           <li><Link to="/affiliates" onClick={() => setIsMenuOpen(false)}>Affiliates</Link></li>
           <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
           <li><Link to="/affiliate-cms" onClick={() => setIsMenuOpen(false)}>Admin</Link></li>
+          <li><Link to="/blog-cms" onClick={() => setIsMenuOpen(false)}>Blog Admin</Link></li>
         </ul>
       </div>
     </nav>

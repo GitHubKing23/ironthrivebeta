@@ -1,0 +1,348 @@
+From 7910fdef919dc625f6684356dd825716dde144a4 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.com>
+Date: Sun, 8 Jun 2025 12:16:42 +0000
+Subject: [PATCH] Add Blog CMS admin page
+
+---
+ README.md                           |  8 +--
+ docs/patch_summary.md               |  1 +
+ docs/wireframe.md                   |  4 +-
+ src/App.js                          |  2 +
+ src/components/Navbar.js            |  1 +
+ src/pages/Blog.js                   | 41 ++++++++++------
+ src/pages/BlogCMS.js                | 75 +++++++++++++++++++++++++++++
+ src/pages/__tests__/Blog.test.js    | 12 +++++
+ src/pages/__tests__/BlogCMS.test.js | 12 +++++
+ src/styles/BlogCMS.css              | 52 ++++++++++++++++++++
+ 10 files changed, 187 insertions(+), 21 deletions(-)
+ create mode 100644 src/pages/BlogCMS.js
+ create mode 100644 src/pages/__tests__/Blog.test.js
+ create mode 100644 src/pages/__tests__/BlogCMS.test.js
+ create mode 100644 src/styles/BlogCMS.css
+
+diff --git a/README.md b/README.md
+index 45d7ba6..028533c 100644
+--- a/README.md
++++ b/README.md
+@@ -89,10 +89,10 @@ See `docs/patch_summary.md` for a table describing each stored patch.
+ 
+ ## Managing Blog Posts
+ 
+-Blog articles live in `src/pages/Blog.js` as an array of post objects. Each post
+-includes an `id`, `title`, `summary`, and `fullContent` field. Simply edit this
+-file and add a new object to the array to publish a new article. Reload the
+-development server to see your changes.
++Open the **Blog Admin** page (`/blog-cms`) to add new posts directly in the browser.
++Fill out the form with a title, summary, and full content. Posts are stored in
++`localStorage` and appear on the Blog page automatically. You can still edit
++`src/pages/Blog.js` to change the default posts shipped with the project.
+ 
+ ## Managing Affiliate Products
+ 
+diff --git a/docs/patch_summary.md b/docs/patch_summary.md
+index 4e44de4..391c5ee 100644
+--- a/docs/patch_summary.md
++++ b/docs/patch_summary.md
+@@ -8,5 +8,6 @@ This repository stores recent diffs as standalone patch files under the `docs` d
+ | `aesthetic_update.patch` | Improves navigation and BMI tool styling, adding the BMI Tool and Affiliates links to the navbar. |
+ | `aesthetic_variables.patch` | Refactors the site's CSS to use theme variables for colors, simplifying future design changes. |
+ | `theme_update.patch` | Introduces global CSS variables and refines the navbar styling. |
++| `blog_cms.patch` | Adds a Blog CMS admin page for creating posts stored in localStorage. |
+ 
+ `wireframe.md` contains an ASCII sketch of the current layout for quick reference.
+diff --git a/docs/wireframe.md b/docs/wireframe.md
+index b812d83..9c01a28 100644
+--- a/docs/wireframe.md
++++ b/docs/wireframe.md
+@@ -3,7 +3,7 @@
+ ```
+ +---------------------------------------------------------+
+ |                  IronThrive (Navbar)                    |
+-| Home | About | Pricing | Blog | Contact | Admin         |
++| Home | About | Pricing | Blog | Contact | Admin | Blog Admin |
+ +---------------------------------------------------------+
+ | HeroSection: "Transform your fitness journey"           |
+ | [Get Started]                                           |
+@@ -20,4 +20,4 @@
+ +---------------------------------------------------------+
+ ```
+ 
+-The Affiliates and Admin pages use a simple grid layout. The **AffiliateCMS** page includes a form for adding new affiliate products and a list where each entry can be deleted.
++The Affiliates and Admin pages use a simple grid layout. The **AffiliateCMS** page includes a form for adding new affiliate products and a list where each entry can be deleted. The **BlogCMS** page works similarly, letting admins create blog posts that appear on the Blog page.
+diff --git a/src/App.js b/src/App.js
+index 0b18144..bdfc90a 100644
+--- a/src/App.js
++++ b/src/App.js
+@@ -12,6 +12,7 @@ import Contact from './pages/Contact';
+ import WeightLossTool from './pages/WeightLossTool';
+ import Affiliates from './pages/Affiliates';
+ import AffiliateCMS from './pages/AffiliateCMS';
++import BlogCMS from './pages/BlogCMS';
+ import Navbar from './components/Navbar';
+ import Footer from './components/Footer';
+ 
+@@ -52,6 +53,7 @@ const AppContent = () => {
+       <Route path="/tool" element={<WeightLossTool />} />
+       <Route path="/affiliates" element={<Affiliates />} />
+       <Route path="/affiliate-cms" element={<AffiliateCMS />} />
++      <Route path="/blog-cms" element={<BlogCMS />} />
+     </Routes>
+   );
+ }
+diff --git a/src/components/Navbar.js b/src/components/Navbar.js
+index 3ffe452..fe8ce9b 100644
+--- a/src/components/Navbar.js
++++ b/src/components/Navbar.js
+@@ -32,6 +32,7 @@ const Navbar = () => {
+           <li><Link to="/affiliates" onClick={() => setIsMenuOpen(false)}>Affiliates</Link></li>
+           <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+           <li><Link to="/affiliate-cms" onClick={() => setIsMenuOpen(false)}>Admin</Link></li>
++          <li><Link to="/blog-cms" onClick={() => setIsMenuOpen(false)}>Blog Admin</Link></li>
+         </ul>
+       </div>
+     </nav>
+diff --git a/src/pages/Blog.js b/src/pages/Blog.js
+index 7f9d3b5..cf69753 100644
+--- a/src/pages/Blog.js
++++ b/src/pages/Blog.js
+@@ -1,13 +1,11 @@
+ // src/pages/Blog.js
+-import React, { useState } from 'react';
++import React, { useState, useEffect } from 'react';
+ import '../styles/Blog.css'; // Import the CSS file for the Blog page
+ 
+-const Blog = () => {
+-  // Sample blog posts with longer content
+-  const posts = [
+-    {
+-      id: 1,
+-      title: 'The Benefits of Personal Training',
++const defaultPosts = [
++    {
++      id: 1,
++      title: 'The Benefits of Personal Training',
+       summary: 'Personal training provides individuals with a tailored approach to fitness. It ensures proper technique, motivation, and accountability.',
+       fullContent: `
+         Personal training has numerous benefits, especially when it comes to improving fitness and achieving specific goals. 
+@@ -19,10 +17,10 @@ const Blog = () => {
+ 
+         Whether you're trying to lose weight, build muscle, or improve overall health, personal training is an excellent option for anyone looking to take their fitness journey to the next level. 
+       `,
+-    },
+-    {
+-      id: 2,
+-      title: 'Group Training: Why It Works',
++    },
++    {
++      id: 2,
++      title: 'Group Training: Why It Works',
+       summary: 'Group training sessions can provide a supportive and motivating environment. Learn how group workouts can bring results.',
+       fullContent: `
+         Group training is an incredibly popular method of exercise that combines the benefits of social interaction and fitness. Unlike one-on-one training, group training allows you to work out with others who share similar goals, creating a motivating and supportive environment.
+@@ -33,11 +31,24 @@ const Blog = () => {
+         
+         In addition to the motivation, group training can be a more cost-effective option compared to personal training. It’s also a great way to meet new people who share similar interests. 
+       `,
+-    },
+-    // Add more articles as needed
+-  ];
++    },
++    // Add more articles as needed
++  ];
++
++const Blog = () => {
++  const [posts, setPosts] = useState(defaultPosts);
+ 
+-  const [readMore, setReadMore] = useState(null); // Track which post has been expanded
++  useEffect(() => {
++    const stored = localStorage.getItem('blogPosts');
++    if (stored) {
++      const parsed = JSON.parse(stored);
++      if (parsed.length) {
++        setPosts(parsed);
++      }
++    }
++  }, []);
++
++  const [readMore, setReadMore] = useState(null); // Track which post has been expanded
+ 
+   const toggleReadMore = (id) => {
+     setReadMore(readMore === id ? null : id); // Toggle between showing and hiding full content
+diff --git a/src/pages/BlogCMS.js b/src/pages/BlogCMS.js
+new file mode 100644
+index 0000000..1b022f1
+--- /dev/null
++++ b/src/pages/BlogCMS.js
+@@ -0,0 +1,75 @@
++import React, { useState, useEffect } from 'react';
++import '../styles/BlogCMS.css';
++
++const BlogCMS = () => {
++  const [posts, setPosts] = useState(() => {
++    const stored = localStorage.getItem('blogPosts');
++    return stored ? JSON.parse(stored) : [];
++  });
++
++  const [title, setTitle] = useState('');
++  const [summary, setSummary] = useState('');
++  const [fullContent, setFullContent] = useState('');
++
++  useEffect(() => {
++    localStorage.setItem('blogPosts', JSON.stringify(posts));
++  }, [posts]);
++
++  const handleAdd = (e) => {
++    e.preventDefault();
++    const newPost = { title, summary, fullContent };
++    setPosts([...posts, newPost]);
++    setTitle('');
++    setSummary('');
++    setFullContent('');
++  };
++
++  const handleDelete = (index) => {
++    setPosts(posts.filter((_, i) => i !== index));
++  };
++
++  return (
++    <div className="blog-cms-page">
++      <h1>Manage Blog Posts</h1>
++      <form className="blog-form" onSubmit={handleAdd}>
++        <input
++          placeholder="Title"
++          value={title}
++          onChange={(e) => setTitle(e.target.value)}
++          required
++        />
++        <textarea
++          placeholder="Summary"
++          value={summary}
++          onChange={(e) => setSummary(e.target.value)}
++          required
++        />
++        <textarea
++          placeholder="Full Content"
++          value={fullContent}
++          onChange={(e) => setFullContent(e.target.value)}
++          required
++        />
++        <button type="submit">Add Post</button>
++      </form>
++
++      <div className="blog-list">
++        {posts.map((p, index) => (
++          <div key={index} className="blog-item">
++            <h2>{p.title}</h2>
++            <p>{p.summary}</p>
++            <button
++              type="button"
++              className="delete-button"
++              onClick={() => handleDelete(index)}
++            >
++              Delete
++            </button>
++          </div>
++        ))}
++      </div>
++    </div>
++  );
++};
++
++export default BlogCMS;
+diff --git a/src/pages/__tests__/Blog.test.js b/src/pages/__tests__/Blog.test.js
+new file mode 100644
+index 0000000..a18f868
+--- /dev/null
++++ b/src/pages/__tests__/Blog.test.js
+@@ -0,0 +1,12 @@
++import { render, screen } from '@testing-library/react';
++import { BrowserRouter } from 'react-router-dom';
++import Blog from '../Blog';
++
++test('renders Blog page heading', () => {
++  render(
++    <BrowserRouter>
++      <Blog />
++    </BrowserRouter>
++  );
++  expect(screen.getByText(/our blog/i)).toBeInTheDocument();
++});
+diff --git a/src/pages/__tests__/BlogCMS.test.js b/src/pages/__tests__/BlogCMS.test.js
+new file mode 100644
+index 0000000..d6b6b46
+--- /dev/null
++++ b/src/pages/__tests__/BlogCMS.test.js
+@@ -0,0 +1,12 @@
++import { render, screen } from '@testing-library/react';
++import { BrowserRouter } from 'react-router-dom';
++import BlogCMS from '../BlogCMS';
++
++test('renders Blog CMS heading', () => {
++  render(
++    <BrowserRouter>
++      <BlogCMS />
++    </BrowserRouter>
++  );
++  expect(screen.getByText(/manage blog posts/i)).toBeInTheDocument();
++});
+diff --git a/src/styles/BlogCMS.css b/src/styles/BlogCMS.css
+new file mode 100644
+index 0000000..a00d43e
+--- /dev/null
++++ b/src/styles/BlogCMS.css
+@@ -0,0 +1,52 @@
++.blog-cms-page {
++  max-width: 800px;
++  margin: 40px auto;
++  padding: 20px;
++}
++
++.blog-form {
++  display: flex;
++  flex-direction: column;
++  gap: 10px;
++  margin-bottom: 30px;
++}
++
++.blog-form input,
++.blog-form textarea {
++  padding: 10px;
++  font-size: 1rem;
++  border: 1px solid #ccc;
++  border-radius: 5px;
++}
++
++.blog-form button {
++  background-color: #3498db;
++  color: white;
++  border: none;
++  padding: 10px;
++  border-radius: 5px;
++  cursor: pointer;
++}
++
++.blog-list {
++  display: grid;
++  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
++  gap: 20px;
++}
++
++.blog-item {
++  border: 1px solid #ddd;
++  padding: 15px;
++  border-radius: 8px;
++  text-align: center;
++}
++
++.delete-button {
++  margin-top: 10px;
++  background-color: #e74c3c;
++  color: white;
++  border: none;
++  padding: 5px 10px;
++  border-radius: 4px;
++  cursor: pointer;
++}
+-- 
+2.43.0
+
