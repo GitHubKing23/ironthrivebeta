@@ -101,3 +101,4 @@ Affiliate CMS. Fill out the form to add a product name, image URL, description,
 and purchase link. Items are saved in your browser's `localStorage` and will
 appear on the Affiliates page. You can remove an entry by clicking its **Delete**
 button or by clearing browser storage.
+The admin page is password protected with the password `7vY3p$92q`.
