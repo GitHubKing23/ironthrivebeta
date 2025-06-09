@@ -10,4 +10,5 @@ test('renders navbar links', () => {
   );
   expect(screen.getByText('Home')).toBeInTheDocument();
   expect(screen.getByText('Pricing')).toBeInTheDocument();
+  expect(screen.getByText('Admin ▾')).toBeInTheDocument();
 });
