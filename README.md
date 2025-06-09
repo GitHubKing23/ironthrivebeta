@@ -84,8 +84,8 @@ Run `npm install` after cloning to ensure all dependencies are present before st
 This project is **frontend only**. The Affiliate CMS stores data in the browser's
 localStorage, so no server or backend setup is required.
 
-The `docs/affiliates_cms.patch` file contains the full diff introducing the Affiliate CMS and aesthetic improvements, while `docs/wireframe.md` provides a high-level diagram of the current layout.
-See `docs/patch_summary.md` for a table describing each stored patch.
+The `docs/full_update.patch` file captures the complete set of changes for the Affiliate CMS, Blog CMS, and aesthetic updates. `docs/wireframe.md` provides a high-level diagram of the current layout.
+See `docs/patch_summary.md` for a table describing available patches.
 
 ## Managing Blog Posts
 
