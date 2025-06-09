@@ -1,6 +1,5 @@
 /* src/App.css */
 .App {
-  font-family: Arial, sans-serif;
   text-align: center;
 }
 
@@ -15,17 +14,20 @@ input {
   margin: 10px;
   padding: 10px;
   font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #f4a261;
+  background-color: var(--color-accent);
   border: none;
+  border-radius: 5px;
   color: white;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #e76f51;
+  background-color: var(--color-accent-dark);
 }

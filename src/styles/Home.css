@@ -63,7 +63,7 @@
   .cta-button {
     font-size: 1.5rem;
     padding: 15px 40px;
-    background-color: #f4a261; /* Accent color for the button */
+    background-color: var(--color-accent); /* Accent color for the button */
     color: white;
     text-decoration: none;
     border-radius: 50px;
@@ -80,7 +80,7 @@
   }
   
   .cta-button:hover {
-    background-color: #e76f51; /* Slightly darker shade on hover */
+    background-color: var(--color-accent-dark); /* Slightly darker shade on hover */
     transform: translateY(-3px);
   }
   

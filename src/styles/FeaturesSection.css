@@ -7,7 +7,7 @@
   
   .features-section h2 {
     font-size: 2.5rem;
-    color: #2c3e50;
+    color: var(--color-primary);
     margin-bottom: 15px;
   }
   
@@ -37,7 +37,7 @@
   .feature-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    background-color: #f4a261; /* Accent color on hover */
+    background-color: var(--color-accent); /* Accent color on hover */
   }
   
   .feature-item h3 {

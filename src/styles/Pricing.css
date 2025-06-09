@@ -9,7 +9,7 @@
   
   .pricing-page h1 {
     font-size: 3rem;
-    color: #2c3e50; /* Dark blue for the header */
+    color: var(--color-primary); /* Dark blue for the header */
     margin-bottom: 40px;
   }
   
