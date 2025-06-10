@@ -1,12 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import BlogCMS from '../BlogCMS';
 
-test('renders Blog CMS heading', () => {
-  render(
-    <BrowserRouter>
-      <BlogCMS />
-    </BrowserRouter>
-  );
+test('shows Blog CMS dashboard content', () => {
+  render(<BlogCMS />);
+
   expect(screen.getByText(/manage blog posts/i)).toBeInTheDocument();
+  expect(screen.getByPlaceholderText(/title/i)).toBeInTheDocument();
+  expect(screen.getByPlaceholderText(/summary/i)).toBeInTheDocument();
+  expect(screen.getByPlaceholderText(/full content/i)).toBeInTheDocument();
 });

@@ -1,7 +1,7 @@
 // src/App.js
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import { initGA, logPageView } from './googleAnalytics';  // Import GA functions
+import { initGA, logPageView } from './googleAnalytics';
 
 import Home from './pages/Home';
 import Blog from './pages/Blog';
@@ -11,12 +11,9 @@ import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import WeightLossTool from './pages/WeightLossTool';
 import Affiliates from './pages/Affiliates';
-<<<<<<< ours
-import AffiliateCMS from './pages/AffiliateCMS'; // ✅ Newly added import
-=======
-import AffiliateCMS from './pages/AffiliateCMS';
-import BlogCMS from './pages/BlogCMS';
->>>>>>> theirs
+import AffiliateCMS from './pages/AffiliateCMS'; // ✅ Newly added
+import BlogCMS from './pages/BlogCMS'; // ✅ Newly added
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -32,16 +29,13 @@ function App() {
   );
 }
 
-// A new component to handle page view logging
 const AppContent = () => {
-  const location = useLocation(); // useLocation hook to track route changes
+  const location = useLocation();
 
-  // Initialize Google Analytics only once when the component mounts
   useEffect(() => {
     initGA();
   }, []);
 
-  // Log page view whenever the location changes
   useEffect(() => {
     logPageView();
   }, [location]);
@@ -56,14 +50,10 @@ const AppContent = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/tool" element={<WeightLossTool />} />
       <Route path="/affiliates" element={<Affiliates />} />
-<<<<<<< ours
-      <Route path="/affiliate-cms" element={<AffiliateCMS />} /> {/* ✅ New route */}
-=======
-      <Route path="/admin/affiliates" element={<AffiliateCMS />} />
-      <Route path="/admin/blog" element={<BlogCMS />} />
->>>>>>> theirs
+      <Route path="/affiliate-cms" element={<AffiliateCMS />} /> {/* ✅ New Route */}
+      <Route path="/blog-cms" element={<BlogCMS />} /> {/* ✅ New Route */}
     </Routes>
   );
-}
+};
 
 export default App;

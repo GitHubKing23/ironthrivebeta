@@ -1,14 +1,26 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import * as AffiliateCMSModule from '../AffiliateCMS.jsx';
-const AffiliateCMS = AffiliateCMSModule.default;
+import AffiliateCMS from '../AffiliateCMS';
 
-test('renders Affiliate CMS heading', () => {
+beforeEach(() => {
+  localStorage.clear();
+});
+
+test('shows CMS dashboard after login', async () => {
   render(
     <BrowserRouter>
       <AffiliateCMS />
     </BrowserRouter>
   );
-  expect(screen.getByText(/manage affiliates/i)).toBeInTheDocument();
-});
 
+  // Simulate login
+  const passwordInput = screen.getByPlaceholderText(/password/i);
+  fireEvent.change(passwordInput, { target: { value: 'secret' } });
+
+  const loginButton = screen.getByRole('button', { name: /login/i });
+  fireEvent.click(loginButton);
+
+  // Wait for dashboard items
+  expect(await screen.findByText(/manage blog posts/i)).toBeInTheDocument();
+  expect(await screen.findByText(/manage affiliates/i)).toBeInTheDocument();
+});
