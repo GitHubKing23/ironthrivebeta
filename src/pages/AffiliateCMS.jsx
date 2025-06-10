@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/AffiliateCMS.css';
 
+const ADMIN_PASSWORD = '7vY3p$92q';
+
 const AffiliateCMS = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [password, setPassword] = useState('');
+
   const [affiliates, setAffiliates] = useState(() => {
     const stored = localStorage.getItem('affiliates');
     return stored ? JSON.parse(stored) : [];
@@ -16,6 +21,16 @@ const AffiliateCMS = () => {
     localStorage.setItem('affiliates', JSON.stringify(affiliates));
     console.log('[AffiliateCMS] Updated localStorage:', affiliates);
   }, [affiliates]);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      setLoggedIn(true);
+      setPassword('');
+    } else {
+      alert('Incorrect password');
+    }
+  };
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -32,6 +47,24 @@ const AffiliateCMS = () => {
     console.log('[AffiliateCMS] Deleting affiliate at index:', index);
     setAffiliates(affiliates.filter((_, i) => i !== index));
   };
+
+  if (!loggedIn) {
+    return (
+      <div className="affiliate-cms-page" data-testid="affiliate-cms-page">
+        <h1>Admin Login</h1>
+        <form className="affiliate-form" onSubmit={handleLogin}>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div className="affiliate-cms-page" data-testid="affiliate-cms-page">

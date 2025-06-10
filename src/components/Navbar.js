@@ -4,6 +4,7 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -30,7 +31,38 @@ const Navbar = () => {
           <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
           <li><Link to="/tool" onClick={() => setIsMenuOpen(false)}>BMI Tool</Link></li>
           <li><Link to="/affiliates" onClick={() => setIsMenuOpen(false)}>Affiliates</Link></li>
-          <li><Link to="/affiliate-cms" onClick={() => setIsMenuOpen(false)}>Admin</Link></li>
+          <li className="dropdown">
+            <span
+              className="dropdown-toggle"
+              onClick={() => setIsAdminOpen(!isAdminOpen)}
+            >
+              Admin ▾
+            </span>
+            <ul className={`dropdown-menu ${isAdminOpen ? 'show' : ''}`}>
+              <li>
+                <Link
+                  to="/admin/blog"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsAdminOpen(false);
+                  }}
+                >
+                  Blog CMS
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/admin/affiliates"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsAdminOpen(false);
+                  }}
+                >
+                  Affiliate CMS
+                </Link>
+              </li>
+            </ul>
+          </li>
           <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
         </ul>
       </div>

@@ -71,7 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Affiliate CMS
 
-The app includes a simple admin page to manage affiliate products. Click **Admin** in the navigation bar to add new products with a name, image, description, and link. These entries are saved in your browser's localStorage and displayed on the Affiliates page.
+The app includes a simple admin area to manage affiliate products. Use the **Admin ▾** dropdown in the navigation bar and choose **Affiliate CMS** (path `/admin/affiliates`) to add new products with a name, image, description, and link. These entries are saved in your browser's localStorage and displayed on the Affiliates page.
 
 ## Aesthetic Updates
 
@@ -95,19 +95,18 @@ file and add a new object to the array to publish a new article. Reload the
 development server to see your changes.
 
 
-Open the **Blog Admin** page (`/blog-cms`) to add new posts directly in the browser.
+Open the **Blog CMS** from the **Admin ▾** dropdown (path `/admin/blog`) to add new posts directly in the browser.
 Fill out the form with a title, summary, and full content. Posts are stored in
 `localStorage` and appear on the Blog page automatically. You can still edit
-`src/pages/Blog.js` to change the default posts shipped with the project.
+`src/pages/Blog.js` to change the default posts shipped with the project. You'll be prompted for the admin password when visiting this page.
 
 ## Managing Affiliate Products
 
-Use the **Admin** link in the navigation bar (path `/affiliate-cms`) to open the
-Affiliate CMS. Fill out the form to add a product name, image URL, description,
-and purchase link. Items are saved in your browser's `localStorage` and will
-appear on the Affiliates page. You can remove an entry by clicking its **Delete**
-button or by clearing browser storage.
-The admin page is password protected with the password `7vY3p$92q`.
+Use the **Admin ▾** dropdown (path `/admin/affiliates`) to open the Affiliate CMS.
+Fill out the form to add a product name, image URL, description, and purchase link.
+Items are saved in your browser's `localStorage` and will appear on the Affiliates page.
+You can remove an entry by clicking its **Delete** button or by clearing browser storage.
+Both admin pages are password protected with the password `7vY3p$92q`.
 
 ## Available Patch Files
 

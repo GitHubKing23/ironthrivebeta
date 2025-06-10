@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/BlogCMS.css';
 
+const ADMIN_PASSWORD = '7vY3p$92q';
+
 const BlogCMS = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [password, setPassword] = useState('');
+
   const [posts, setPosts] = useState(() => {
     const stored = localStorage.getItem('blogPosts');
     return stored ? JSON.parse(stored) : [];
@@ -16,6 +21,16 @@ const BlogCMS = () => {
     localStorage.setItem('blogPosts', JSON.stringify(posts));
   }, [posts]);
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      setLoggedIn(true);
+      setPassword('');
+    } else {
+      alert('Incorrect password');
+    }
+  };
+
   const handleAdd = (e) => {
     e.preventDefault();
     const newPost = { title, summary, fullContent, publishDate };
@@ -29,6 +44,24 @@ const BlogCMS = () => {
   const handleDelete = (index) => {
     setPosts(posts.filter((_, i) => i !== index));
   };
+
+  if (!loggedIn) {
+    return (
+      <div className="blog-cms-page">
+        <h1>Admin Login</h1>
+        <form className="blog-form" onSubmit={handleLogin}>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div className="blog-cms-page">
