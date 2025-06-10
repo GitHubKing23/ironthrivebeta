@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import BlogCMS from '../BlogCMS';
 
 test('renders Blog CMS heading after login', () => {
+  localStorage.clear();
   render(
     <BrowserRouter>
       <BlogCMS />

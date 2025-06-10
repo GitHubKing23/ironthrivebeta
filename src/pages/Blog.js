@@ -1,10 +1,16 @@
 // src/pages/Blog.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Blog.css'; // Import the CSS file for the Blog page
+
+const getEmbedUrl = (url) => {
+  if (!url) return '';
+  const match = url.match(/(?:youtu\.be\/|v=)([\w-]+)/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+};
 
 const Blog = () => {
   // Sample blog posts with longer content
-  const posts = [
+  const defaultPosts = [
     {
       id: 1,
       title: 'The Benefits of Personal Training',
@@ -37,7 +43,18 @@ const Blog = () => {
     // Add more articles as needed
   ];
 
+  const [posts, setPosts] = useState(defaultPosts);
   const [readMore, setReadMore] = useState(null); // Track which post has been expanded
+
+  useEffect(() => {
+    const stored = localStorage.getItem('blogPosts');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed.length) {
+        setPosts([...defaultPosts, ...parsed]);
+      }
+    }
+  }, []);
 
   const toggleReadMore = (id) => {
     setReadMore(readMore === id ? null : id); // Toggle between showing and hiding full content
@@ -51,6 +68,15 @@ const Blog = () => {
           <div key={post.id} className="blog-post">
             <h2>{post.title}</h2>
             <p>{post.summary}</p>
+            {post.video && (
+              <iframe
+                src={getEmbedUrl(post.video)}
+                title={post.title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
             <button className="read-more" onClick={() => toggleReadMore(post.id)}>
               {readMore === post.id ? 'Read Less' : 'Read More'}
             </button>

@@ -4,6 +4,7 @@ import * as AffiliateCMSModule from '../AffiliateCMS.jsx';
 const AffiliateCMS = AffiliateCMSModule.default;
 
 test('renders Affiliate CMS heading after login', () => {
+  localStorage.clear();
   render(
     <BrowserRouter>
       <AffiliateCMS />
