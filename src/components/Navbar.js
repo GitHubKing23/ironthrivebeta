@@ -5,7 +5,11 @@ import './Navbar.css';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 <<<<<<< ours
+<<<<<<< ours
   const [adminOpen, setAdminOpen] = useState(false);
+=======
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
+>>>>>>> theirs
 =======
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 >>>>>>> theirs

@@ -1,30 +1,40 @@
+// src/pages/BlogCMS.js
 import React, { useState, useEffect } from 'react';
+import '../styles/BlogCMS.css';
 
 const ADMIN_PASSWORD = '7vY3p$92q';
 
+const getEmbedUrl = (url) => {
+  if (!url) return '';
+  const match = url.match(/(?:youtu\.be\/|v=)([\w-]+)/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+};
+
 const BlogCMS = () => {
-  const [loggedIn, setLoggedIn] = useState(() => localStorage.getItem('adminLoggedIn') === 'true');
+  const [loggedIn, setLoggedIn] = useState(
+    () => localStorage.getItem('adminLoggedIn') === 'true'
+  );
   const [password, setPassword] = useState('');
-  const [blogPosts, setBlogPosts] = useState([]);
-  const [newPost, setNewPost] = useState({ title: '', content: '' });
-  const [editingPostId, setEditingPostId] = useState(null);
-  const [editedPost, setEditedPost] = useState({ title: '', content: '' });
+
+  const [posts, setPosts] = useState(() => {
+    const stored = localStorage.getItem('blogPosts');
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  const [title, setTitle] = useState('');
+  const [summary, setSummary] = useState('');
+  const [fullContent, setFullContent] = useState('');
+  const [publishDate, setPublishDate] = useState('');
+  const [video, setVideo] = useState('');
+  const [image, setImage] = useState('');
+  const [editingIndex, setEditingIndex] = useState(null);
 
   useEffect(() => {
-    if (loggedIn) fetchBlogPosts();
-  }, [loggedIn]);
+    localStorage.setItem('blogPosts', JSON.stringify(posts));
+  }, [posts]);
 
-  const fetchBlogPosts = async () => {
-    try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/blogs`);
-      const data = await res.json();
-      setBlogPosts(data);
-    } catch (error) {
-      console.error('Failed to fetch blog posts:', error);
-    }
-  };
-
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     if (password === ADMIN_PASSWORD) {
       setLoggedIn(true);
       localStorage.setItem('adminLoggedIn', 'true');
@@ -34,125 +44,172 @@ const BlogCMS = () => {
     }
   };
 
-  const handleLogout = () => {
-    setLoggedIn(false);
-    localStorage.removeItem('adminLoggedIn');
+  const handleImageChange = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) {
+      setImage('');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onloadend = () => setImage(reader.result);
+    reader.readAsDataURL(file);
   };
 
-  const handleInputChange = (e) => {
-    setNewPost({ ...newPost, [e.target.name]: e.target.value });
+  const clearForm = () => {
+    setTitle('');
+    setSummary('');
+    setFullContent('');
+    setPublishDate('');
+    setVideo('');
+    setImage('');
   };
 
-  const handleAddPost = async () => {
-    try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/blogs`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newPost),
-      });
-      if (res.ok) {
-        setNewPost({ title: '', content: '' });
-        fetchBlogPosts();
-      }
-    } catch (error) {
-      console.error('Failed to add post:', error);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newPost = {
+      id: editingIndex !== null ? posts[editingIndex].id : Date.now(),
+      title,
+      summary,
+      fullContent,
+      publishDate,
+      video,
+      image,
+    };
+
+    if (editingIndex !== null) {
+      const updated = [...posts];
+      updated[editingIndex] = newPost;
+      setPosts(updated);
+      setEditingIndex(null);
+    } else {
+      setPosts([...posts, newPost]);
+    }
+
+    clearForm();
+  };
+
+  const handleEdit = (index) => {
+    const p = posts[index];
+    setTitle(p.title);
+    setSummary(p.summary);
+    setFullContent(p.fullContent);
+    setPublishDate(p.publishDate);
+    setVideo(p.video || '');
+    setImage(p.image || '');
+    setEditingIndex(index);
+  };
+
+  const handleDelete = (index) => {
+    setPosts(posts.filter((_, i) => i !== index));
+    if (editingIndex === index) {
+      clearForm();
+      setEditingIndex(null);
     }
   };
 
-  const handleDeletePost = async (id) => {
-    try {
-      await fetch(`${process.env.REACT_APP_API_URL}/api/blogs/${id}`, {
-        method: 'DELETE',
-      });
-      fetchBlogPosts();
-    } catch (error) {
-      console.error('Failed to delete post:', error);
-    }
-  };
-
-  const handleEditClick = (post) => {
-    setEditingPostId(post._id);
-    setEditedPost({ title: post.title, content: post.content });
-  };
-
-  const handleSaveEdit = async () => {
-    try {
-      await fetch(`${process.env.REACT_APP_API_URL}/api/blogs/${editingPostId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(editedPost),
-      });
-      setEditingPostId(null);
-      setEditedPost({ title: '', content: '' });
-      fetchBlogPosts();
-    } catch (error) {
-      console.error('Failed to update post:', error);
-    }
-  };
-
-  return (
-    <div className="container">
-      {!loggedIn ? (
-        <div className="login-form">
-          <h2>Admin Login</h2>
+  if (!loggedIn) {
+    return (
+      <div className="blog-cms-page">
+        <h1>Admin Login</h1>
+        <form className="blog-form" onSubmit={handleLogin}>
           <input
             type="password"
-            placeholder="Enter admin password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          <button onClick={handleLogin}>Login</button>
-        </div>
-      ) : (
-        <div className="cms">
-          <h2>Manage Blog Posts</h2>
-          <button onClick={handleLogout}>Logout</button>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    );
+  }
 
-          <h3>Add New Post</h3>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            value={newPost.title}
-            onChange={handleInputChange}
-          />
-          <textarea
-            name="content"
-            placeholder="Content"
-            value={newPost.content}
-            onChange={handleInputChange}
-          ></textarea>
-          <button onClick={handleAddPost}>Add Post</button>
+  return (
+    <div className="blog-cms-page">
+      <h1>Manage Blog Posts</h1>
+      <form className="blog-form" onSubmit={handleSubmit}>
+        <input
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <textarea
+          placeholder="Summary"
+          value={summary}
+          onChange={(e) => setSummary(e.target.value)}
+          required
+        />
+        <textarea
+          placeholder="Full Content"
+          value={fullContent}
+          onChange={(e) => setFullContent(e.target.value)}
+          required
+        />
+        <input
+          type="date"
+          value={publishDate}
+          onChange={(e) => setPublishDate(e.target.value)}
+          required
+        />
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+        <input
+          placeholder="YouTube URL"
+          value={video}
+          onChange={(e) => setVideo(e.target.value)}
+        />
+        <button type="submit">
+          {editingIndex !== null ? 'Save Post' : 'Add Post'}
+        </button>
+        {editingIndex !== null && (
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={() => {
+              setEditingIndex(null);
+              clearForm();
+            }}
+          >
+            Cancel
+          </button>
+        )}
+      </form>
 
-          <h3>Existing Posts</h3>
-          <ul>
-            {blogPosts.map((post) => (
-              <li key={post._id}>
-                {editingPostId === post._id ? (
-                  <div>
-                    <input
-                      value={editedPost.title}
-                      onChange={(e) => setEditedPost({ ...editedPost, title: e.target.value })}
-                    />
-                    <textarea
-                      value={editedPost.content}
-                      onChange={(e) => setEditedPost({ ...editedPost, content: e.target.value })}
-                    />
-                    <button onClick={handleSaveEdit}>Save</button>
-                  </div>
-                ) : (
-                  <>
-                    <strong>{post.title}</strong>
-                    <p>{post.content}</p>
-                    <button onClick={() => handleEditClick(post)}>Edit</button>
-                    <button onClick={() => handleDeletePost(post._id)}>Delete</button>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div className="blog-list">
+        {posts.map((p, index) => (
+          <div key={index} className="blog-item">
+            {p.image && (
+              <img src={p.image} alt={p.title} className="blog-image" />
+            )}
+            <h2>{p.title}</h2>
+            <p>{p.summary}</p>
+            {p.video && (
+              <iframe
+                src={getEmbedUrl(p.video)}
+                title={p.title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
+            <button
+              type="button"
+              className="edit-button"
+              onClick={() => handleEdit(index)}
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              className="delete-button"
+              onClick={() => handleDelete(index)}
+            >
+              Delete
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

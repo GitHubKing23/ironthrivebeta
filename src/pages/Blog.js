@@ -9,10 +9,6 @@ const getEmbedUrl = (url) => {
 };
 
 const Blog = () => {
-<<<<<<< ours
-=======
-  // Sample blog posts with longer content
->>>>>>> theirs
   const defaultPosts = [
     {
       id: 1,
@@ -49,21 +45,7 @@ const Blog = () => {
   ];
 
   const [posts, setPosts] = useState(defaultPosts);
-<<<<<<< ours
   const [readMore, setReadMore] = useState(null);
-
-  useEffect(() => {
-    const stored = localStorage.getItem('blogPosts');
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      if (parsed.length) {
-        setPosts([...defaultPosts, ...parsed]);
-      }
-    }
-  }, []); // Default posts are static, so [] is safe
-=======
-  const [readMore, setReadMore] = useState(null); // Track which post has been expanded
->>>>>>> theirs
 
   useEffect(() => {
     const stored = localStorage.getItem('blogPosts');
