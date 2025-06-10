@@ -1,14 +1,20 @@
 // src/pages/Blog.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Blog.css'; // Import the CSS file for the Blog page
 
+const getEmbedUrl = (url) => {
+  if (!url) return '';
+  const match = url.match(/(?:youtu\.be\/|v=)([\w-]+)/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+};
+
 const Blog = () => {
-  // Sample blog posts with longer content
-  const posts = [
+  const defaultPosts = [
     {
       id: 1,
       title: 'The Benefits of Personal Training',
-      summary: 'Personal training provides individuals with a tailored approach to fitness. It ensures proper technique, motivation, and accountability.',
+      summary:
+        'Personal training provides individuals with a tailored approach to fitness. It ensures proper technique, motivation, and accountability.',
       fullContent: `
         Personal training has numerous benefits, especially when it comes to improving fitness and achieving specific goals.
         One of the key advantages is the personalized approach that a trainer offers. Unlike general workout plans or programs,
@@ -23,7 +29,8 @@ const Blog = () => {
     {
       id: 2,
       title: 'Group Training: Why It Works',
-      summary: 'Group training sessions can provide a supportive and motivating environment. Learn how group workouts can bring results.',
+      summary:
+        'Group training sessions can provide a supportive and motivating environment. Learn how group workouts can bring results.',
       fullContent: `
         Group training is an incredibly popular method of exercise that combines the benefits of social interaction and fitness. Unlike one-on-one training, group training allows you to work out with others who share similar goals, creating a motivating and supportive environment.
 
@@ -37,10 +44,21 @@ const Blog = () => {
     // Add more articles as needed
   ];
 
-  const [readMore, setReadMore] = useState(null); // Track which post has been expanded
+  const [posts, setPosts] = useState(defaultPosts);
+  const [readMore, setReadMore] = useState(null);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('blogPosts');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed.length) {
+        setPosts([...defaultPosts, ...parsed]);
+      }
+    }
+  }, []); // Default posts are static, so [] is safe
 
   const toggleReadMore = (id) => {
-    setReadMore(readMore === id ? null : id); // Toggle between showing and hiding full content
+    setReadMore(readMore === id ? null : id);
   };
 
   return (
@@ -51,6 +69,15 @@ const Blog = () => {
           <div key={post.id} className="blog-post">
             <h2>{post.title}</h2>
             <p>{post.summary}</p>
+            {post.video && (
+              <iframe
+                src={getEmbedUrl(post.video)}
+                title={post.title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
             <button className="read-more" onClick={() => toggleReadMore(post.id)}>
               {readMore === post.id ? 'Read Less' : 'Read More'}
             </button>

@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
-
+cod
 In the project directory, you can run:
 
 ### `npm start`
@@ -68,54 +68,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-## Affiliate CMS
-
-The app includes a simple admin page to manage affiliate products. Click **Admin** in the navigation bar to add new products with a name, image, description, and link. These entries are saved in your browser's localStorage and displayed on the Affiliates page.
-
-## Aesthetic Updates
-
-Roboto fonts and a subtle background gradient provide a cleaner look. The Affiliates grid features hover effects and improved spacing for better readability.
-
-## Development Notes
-
-Run `npm install` after cloning to ensure all dependencies are present before starting or testing the application.
-
-This project is **frontend only**. The Affiliate CMS stores data in the browser's
-localStorage, so no server or backend setup is required.
-
-The `docs/affiliates_cms.patch` file contains the full diff introducing the Affiliate CMS and aesthetic improvements, while `docs/wireframe.md` provides a high-level diagram of the current layout.
-<<<<<<< ours
-<<<<<<< ours
-=======
-See `docs/patch_summary.md` for a table describing each stored patch.
->>>>>>> theirs
-
-## Managing Blog Posts
-
-Blog articles live in `src/pages/Blog.js` as an array of post objects. Each post
-includes an `id`, `title`, `summary`, and `fullContent` field. Simply edit this
-file and add a new object to the array to publish a new article. Reload the
-development server to see your changes.
-=======
-See `docs/patch_summary.md` for a table describing each stored patch.
-
-## Managing Blog Posts
-
-Open the **Blog Admin** page (`/blog-cms`) to add new posts directly in the browser.
-Fill out the form with a title, summary, and full content. Posts are stored in
-`localStorage` and appear on the Blog page automatically. You can still edit
-`src/pages/Blog.js` to change the default posts shipped with the project.
->>>>>>> theirs
-
-## Managing Affiliate Products
-
-Use the **Admin** link in the navigation bar (path `/affiliate-cms`) to open the
-Affiliate CMS. Fill out the form to add a product name, image URL, description,
-and purchase link. Items are saved in your browser's `localStorage` and will
-appear on the Affiliates page. You can remove an entry by clicking its **Delete**
-button or by clearing browser storage.
-<<<<<<< ours
-=======
-The admin page is password protected with the password `7vY3p$92q`.
->>>>>>> theirs
