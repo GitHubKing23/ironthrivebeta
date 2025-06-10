@@ -66,6 +66,7 @@ const Blog = () => {
       <div className="blog-list">
         {posts.map((post) => (
           <div key={post.id} className="blog-post">
+            {post.image && <img src={post.image} alt={post.title} className="blog-image" />}
             <h2>{post.title}</h2>
             <p>{post.summary}</p>
             {post.video && (
