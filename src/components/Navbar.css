@@ -1,5 +1,6 @@
 /* src/components/Navbar.css */
 .navbar {
+<<<<<<< ours
   background-color: rgba(var(--color-primary-rgb, 44, 62, 80), 0.9); /* Fallback */
   backdrop-filter: blur(8px);
   padding: 15px 20px;
@@ -102,3 +103,142 @@
 .bar.open:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
+=======
+    background-color: #2c3e50; /* Dark Blue/Charcoal */
+    padding: 15px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-container {
+    display: flex;
+    justify-content: space-between; /* This ensures spacing between title and links */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .navbar-logo {
+    color: #ffffff; /* White Text */
+    font-size: 28px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    margin-left: 30px; /* Adjust left margin to move the title to the left */
+  }
+
+  .navbar-logo:hover {
+    color: #f4a261; /* Accent Color on Hover */
+  }
+
+  .navbar-links {
+    list-style-type: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+  }
+
+  .navbar-links li {
+    position: relative;
+  }
+
+  .dropdown-toggle {
+    cursor: pointer;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #2c3e50;
+    list-style: none;
+    padding: 10px 0;
+    min-width: 160px;
+    z-index: 1000;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .dropdown-menu li {
+    padding: 5px 20px;
+  }
+
+  .navbar-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .navbar-links a:hover {
+    color: #f4a261; /* Accent Color */
+    transform: translateY(-3px);
+  }
+
+  /* Mobile Hamburger Menu */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .bar {
+    width: 30px;
+    height: 3px;
+    background-color: #ffffff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .bar.open:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .bar.open:nth-child(2) {
+    opacity: 0;
+  }
+
+  .bar.open:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Show Navbar on Mobile */
+  .navbar-links.active {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #2c3e50;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .navbar-links.active li {
+    margin-bottom: 15px;
+  }
+
+  /* Media Queries for Mobile */
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+>>>>>>> theirs

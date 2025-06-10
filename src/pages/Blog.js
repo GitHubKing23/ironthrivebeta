@@ -9,6 +9,10 @@ const getEmbedUrl = (url) => {
 };
 
 const Blog = () => {
+<<<<<<< ours
+=======
+  // Sample blog posts with longer content
+>>>>>>> theirs
   const defaultPosts = [
     {
       id: 1,
@@ -45,6 +49,7 @@ const Blog = () => {
   ];
 
   const [posts, setPosts] = useState(defaultPosts);
+<<<<<<< ours
   const [readMore, setReadMore] = useState(null);
 
   useEffect(() => {
@@ -56,6 +61,19 @@ const Blog = () => {
       }
     }
   }, []); // Default posts are static, so [] is safe
+=======
+  const [readMore, setReadMore] = useState(null); // Track which post has been expanded
+>>>>>>> theirs
+
+  useEffect(() => {
+    const stored = localStorage.getItem('blogPosts');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed.length) {
+        setPosts([...defaultPosts, ...parsed]);
+      }
+    }
+  }, []);
 
   const toggleReadMore = (id) => {
     setReadMore(readMore === id ? null : id);
@@ -67,6 +85,7 @@ const Blog = () => {
       <div className="blog-list">
         {posts.map((post) => (
           <div key={post.id} className="blog-post">
+            {post.image && <img src={post.image} alt={post.title} className="blog-image" />}
             <h2>{post.title}</h2>
             <p>{post.summary}</p>
             {post.video && (
