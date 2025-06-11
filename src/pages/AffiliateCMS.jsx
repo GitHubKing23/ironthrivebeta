@@ -1,7 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/AffiliateCMS.css';
 
+const ADMIN_PASSWORD = '7vY3p$92q';
+
+const getEmbedUrl = (url) => {
+  if (!url) return '';
+  const match = url.match(/(?:youtu\.be\/|v=)([\w-]+)/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+};
+
 const AffiliateCMS = () => {
+  const [loggedIn, setLoggedIn] = useState(
+    () => localStorage.getItem('adminLoggedIn') === 'true'
+  );
+  const [password, setPassword] = useState('');
+
   const [affiliates, setAffiliates] = useState(() => {
     const stored = localStorage.getItem('affiliates');
     return stored ? JSON.parse(stored) : [];
@@ -11,27 +24,58 @@ const AffiliateCMS = () => {
   const [image, setImage] = useState('');
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
+  const [video, setVideo] = useState('');
 
   useEffect(() => {
     localStorage.setItem('affiliates', JSON.stringify(affiliates));
     console.log('[AffiliateCMS] Updated localStorage:', affiliates);
   }, [affiliates]);
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      setLoggedIn(true);
+      localStorage.setItem('adminLoggedIn', 'true');
+      setPassword('');
+    } else {
+      alert('Incorrect password');
+    }
+  };
+
   const handleAdd = (e) => {
     e.preventDefault();
-    const newAffiliate = { name, image, description, link };
+    const newAffiliate = { name, image, description, link, video };
     console.log('[AffiliateCMS] Adding affiliate:', newAffiliate);
     setAffiliates([...affiliates, newAffiliate]);
     setName('');
     setImage('');
     setDescription('');
     setLink('');
+    setVideo('');
   };
 
   const handleDelete = (index) => {
     console.log('[AffiliateCMS] Deleting affiliate at index:', index);
     setAffiliates(affiliates.filter((_, i) => i !== index));
   };
+
+  if (!loggedIn) {
+    return (
+      <div className="affiliate-cms-page" data-testid="affiliate-cms-page">
+        <h1>Admin Login</h1>
+        <form className="affiliate-form" onSubmit={handleLogin}>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div className="affiliate-cms-page" data-testid="affiliate-cms-page">
@@ -66,6 +110,11 @@ const AffiliateCMS = () => {
           data-testid="input-link"
           required
         />
+        <input
+          placeholder="YouTube URL"
+          value={video}
+          onChange={(e) => setVideo(e.target.value)}
+        />
         <button type="submit" data-testid="add-button">Add Affiliate</button>
       </form>
 
@@ -75,6 +124,15 @@ const AffiliateCMS = () => {
             {a.image && <img src={a.image} alt={a.name} />}
             <h2>{a.name}</h2>
             <p>{a.description}</p>
+            {a.video && (
+              <iframe
+                src={getEmbedUrl(a.video)}
+                title={a.name}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
             <a href={a.link} target="_blank" rel="noopener noreferrer">
               Buy Now
             </a>

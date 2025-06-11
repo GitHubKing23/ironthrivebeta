@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Affiliates.css';
 
+const getEmbedUrl = (url) => {
+  if (!url) return '';
+  const match = url.match(/(?:youtu\.be\/|v=)([\w-]+)/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+};
+
 const defaultAffiliates = [
   {
     name: 'Jump Rope',
@@ -33,6 +39,15 @@ const Affiliates = () => {
             <img src={a.image} alt={a.name} />
             <h2>{a.name}</h2>
             <p>{a.description}</p>
+            {a.video && (
+              <iframe
+                src={getEmbedUrl(a.video)}
+                title={a.name}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
             <a href={a.link} target="_blank" rel="noopener noreferrer">
               Buy Now
             </a>
