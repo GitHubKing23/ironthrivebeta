@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import WeightLossTool from '../WeightLossTool';
 
-test('displays BMI category table after calculation', () => {
+test('shows BMI category after calculation', () => {
   render(
     <BrowserRouter>
       <WeightLossTool />
@@ -19,6 +19,6 @@ test('displays BMI category table after calculation', () => {
   });
   fireEvent.click(screen.getByRole('button', { name: /calculate/i }));
 
-  expect(screen.getByText(/bmi categories/i)).toBeInTheDocument();
+  expect(screen.getByText(/your bmi is/i)).toBeInTheDocument();
   expect(screen.getByText(/normal weight/i)).toBeInTheDocument();
 });

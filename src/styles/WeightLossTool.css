@@ -55,3 +55,12 @@
 .bmi-table .highlight {
   background-color: #e0f7fa;
 }
+
+.bmi-category {
+  margin-top: 20px;
+}
+
+.bmi-category h2 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}

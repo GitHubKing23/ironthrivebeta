@@ -5,7 +5,7 @@ const WeightLossTool = () => {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [bmi, setBmi] = useState(null);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(null);
 
   const categories = [
     {
@@ -67,7 +67,7 @@ const WeightLossTool = () => {
       const rounded = parseFloat(bmiValue.toFixed(2));
       setBmi(rounded);
       const match = categories.find((c) => rounded >= c.min && rounded < c.max);
-      setCategory(match ? match.label : '');
+      setCategory(match || null);
     }
   };
 
@@ -89,34 +89,13 @@ const WeightLossTool = () => {
         />
         <button type="submit">Calculate</button>
       </form>
-      {bmi && (
-        <>
+      {bmi && category && (
+        <div className="bmi-category">
           <p className="bmi-result">Your BMI is {bmi}</p>
-          <h2>BMI Categories &amp; Recommendations</h2>
-          <table className="bmi-table">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>BMI Range</th>
-                <th>Health Meaning</th>
-                <th>Recommendations</th>
-              </tr>
-            </thead>
-            <tbody>
-              {categories.map((c) => (
-                <tr
-                  key={c.label}
-                  className={c.label === category ? 'highlight' : undefined}
-                >
-                  <td>{c.label}</td>
-                  <td>{c.range}</td>
-                  <td>{c.meaning}</td>
-                  <td>{c.recommendation}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
+          <h2>{category.label}</h2>
+          <p>{category.meaning}</p>
+          <p>{category.recommendation}</p>
+        </div>
       )}
     </div>
   );
