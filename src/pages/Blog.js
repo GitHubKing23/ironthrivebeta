@@ -1,5 +1,5 @@
 // src/pages/Blog.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import '../styles/Blog.css'; // Import the CSS file for the Blog page
 
 const getEmbedUrl = (url) => {
@@ -9,7 +9,7 @@ const getEmbedUrl = (url) => {
 };
 
 const Blog = () => {
-  const defaultPosts = [
+  const defaultPosts = useMemo(() => [
     {
       id: 1,
       title: 'The Benefits of Personal Training',
@@ -41,8 +41,7 @@ const Blog = () => {
         In addition to the motivation, group training can be a more cost-effective option compared to personal training. It’s also a great way to meet new people who share similar interests.
       `,
     },
-    // Add more articles as needed
-  ];
+  ], []);
 
   const [posts, setPosts] = useState(defaultPosts);
   const [readMore, setReadMore] = useState(null);
@@ -55,7 +54,7 @@ const Blog = () => {
         setPosts([...defaultPosts, ...parsed]);
       }
     }
-  }, []);
+  }, [defaultPosts]);
 
   const toggleReadMore = (id) => {
     setReadMore(readMore === id ? null : id);
