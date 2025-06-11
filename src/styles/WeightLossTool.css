@@ -35,3 +35,23 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
+
+.bmi-table {
+  margin: 20px auto;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bmi-table th,
+.bmi-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.bmi-table th {
+  background-color: #f5f5f5;
+}
+
+.bmi-table .highlight {
+  background-color: #e0f7fa;
+}
