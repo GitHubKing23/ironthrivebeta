@@ -79,7 +79,7 @@ Roboto fonts and a subtle background gradient provide a cleaner look. The Affili
 
 ## Development Notes
 
-Run `npm install` after cloning to ensure all dependencies are present before starting or testing the application.
+Run `npm install` after cloning to ensure all dependencies are present before starting or testing the application. If you see an error like `react-scripts: not found` when running tests, it usually means dependencies haven't been installed yet.
 
 This project is **frontend only**. The Affiliate CMS stores data in the browser's
 localStorage, so no server or backend setup is required.
