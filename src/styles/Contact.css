@@ -8,7 +8,7 @@
 
   .contact-page h1 {
     font-size: 3rem;
-    color: #2c3e50;
+    color: var(--color-primary);
     margin-bottom: 20px;
   }
 
@@ -54,7 +54,7 @@
   }
 
   button {
-    background-color: #3498db;
+    background-color: var(--color-accent);
     color: white;
     padding: 12px 25px;
     font-size: 1.125rem;
@@ -65,7 +65,7 @@
   }
 
   button:hover {
-    background-color: #2980b9;
+    background-color: var(--color-accent-dark);
   }
 
   button:disabled {
