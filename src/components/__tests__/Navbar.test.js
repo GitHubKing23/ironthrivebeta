@@ -20,6 +20,6 @@ test('renders navbar links including admin dropdown', () => {
   fireEvent.click(screen.getByText((_, node) => node?.textContent === 'Admin ▾'));
 
   // Check dropdown links
-  expect(screen.getByText(/manage blog posts/i)).toBeInTheDocument();
-  expect(screen.getByText(/manage affiliate products/i)).toBeInTheDocument();
+  expect(screen.getByText(/blog cms/i)).toBeInTheDocument();
+  expect(screen.getByText(/affiliate cms/i)).toBeInTheDocument();
 });

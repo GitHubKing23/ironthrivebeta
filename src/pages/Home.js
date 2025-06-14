@@ -9,11 +9,15 @@ import heroImage from '../assets/hero.png'; // ✅ Correct image import
 const Home = () => {
   return (
     <div>
+<<<<<<< ours
       <TailwindHero
         backgroundImage={heroImage}
         location="Your City"
         trainerName="Your Trainer"
       />
+=======
+      <TailwindHero backgroundImage={require('../assets/gymvid.gif')} location="Your City" trainerName="Your Trainer" />
+>>>>>>> theirs
       <AboutSection />
       <FeaturesSection />
       <TestimonialsSection />
