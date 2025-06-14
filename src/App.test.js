@@ -8,6 +8,6 @@ test('renders home page hero section', () => {
       <Home />
     </BrowserRouter>
   );
-  const heading = screen.getByText(/transform your fitness journey/i);
+  const heading = screen.getByText(/take your fitness/i);
   expect(heading).toBeInTheDocument();
 });
