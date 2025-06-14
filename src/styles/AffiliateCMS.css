@@ -23,7 +23,7 @@
 }
 
 .affiliate-form button {
-  background-color: #3498db;
+  background-color: var(--color-accent);
   color: white;
   border: none;
   padding: 10px;
@@ -33,7 +33,7 @@
 }
 
 .affiliate-form button:hover {
-  background-color: #2980b9;
+  background-color: var(--color-accent-dark);
 }
 
 .affiliate-list {

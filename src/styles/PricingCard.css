@@ -24,7 +24,7 @@
   /* Title inside pricing card */
   .pricing-card h2 {
     font-size: 2.5rem;
-    color: #2c3e50;
+    color: var(--color-primary);
     margin-bottom: 20px;
     font-weight: 700;
   }
@@ -32,7 +32,7 @@
   /* Pricing info (price and duration) */
   .pricing-info {
     font-size: 1.5rem;
-    color: #f4a261; /* Accent color */
+    color: var(--color-accent); /* Accent color */
     font-weight: 700;
     margin-bottom: 20px;
     display: flex;
@@ -60,7 +60,7 @@
   /* Updated CTA Button Color */
   .cta-button {
     padding: 15px 40px;
-    background-color: #3498db; /* Blue color for the CTA button */
+    background-color: var(--color-accent); /* Blue color for the CTA button */
     color: white;
     border: none;
     border-radius: 50px;
@@ -80,7 +80,7 @@
 
   /* Hover effect for CTA button */
   .cta-button:hover {
-    background-color: #2980b9; /* Darker shade of blue for hover */
+    background-color: var(--color-accent-dark); /* Darker shade of blue for hover */
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   }

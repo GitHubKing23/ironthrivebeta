@@ -5,7 +5,7 @@
     background-color: #f4f4f4;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    background: linear-gradient(135deg, #f4a261 20%, #2c3e50 80%); /* Gradient background */
+    background: linear-gradient(135deg, var(--color-accent) 20%, var(--color-primary) 80%); /* Gradient background */
   }
 
   .about-section h2 {

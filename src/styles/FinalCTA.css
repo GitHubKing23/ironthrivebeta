@@ -1,7 +1,7 @@
 /* src/styles/FinalCTA.css */
 
 .final-cta {
-    background-color: #f4a261;  /* Accent color */
+    background-color: var(--color-accent);  /* Accent color */
     padding: 15px 20px;  /* Reduced padding around the container */
     text-align: center;
     border-radius: 8px;  /* Slightly rounded corners */
@@ -18,7 +18,7 @@
   }
 
   .cta-button {
-    background-color: #e76f51;  /* Button color */
+    background-color: var(--color-accent-dark);  /* Button color */
     color: white;
     font-size: 1rem;  /* Smaller font size for the button */
     padding: 8px 16px;  /* Reduced button size */

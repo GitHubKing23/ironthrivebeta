@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# IronThrive
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It includes a responsive hero section built with Tailwind CSS.
+
+## Adding your own hero image
+
+The homepage displays the `TailwindHero` component. To customize the background:
+
+1. Place your image or GIF in `src/assets/`.
+2. Open `src/pages/Home.js` and update the `backgroundImage` prop:
+
+   ```jsx
+   <TailwindHero backgroundImage={require('../assets/your-image.jpg')} location="Your City" trainerName="Your Trainer" />
+   ```
+
+Replace `your-image.jpg` with the file you added. The component will use it as the full-screen hero background.
 
 ## Available Scripts
 cod

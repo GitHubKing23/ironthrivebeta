@@ -7,7 +7,7 @@
 
   .testimonials-section h2 {
     font-size: 2.5rem;
-    color: #2c3e50;
+    color: var(--color-primary);
     margin-bottom: 15px;
   }
 
@@ -30,7 +30,7 @@
   .testimonial-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    background-color: #e76f51; /* Secondary color on hover */
+    background-color: var(--color-accent-dark); /* Secondary color on hover */
     color: white;
   }
 
@@ -42,7 +42,7 @@
 
   .testimonial-item p:last-child {
     font-style: italic;
-    color: #2c3e50;
+    color: var(--color-primary);
   }
 
   @media (max-width: 768px) {
