@@ -6,14 +6,12 @@ const ADMIN_PASSWORD = '7vY3p$92q';
 
 const getEmbedUrl = (url) => {
   if (!url) return '';
-  const match = url.match(/(?:youtu\.be\/|v=)([\w-]+)/);
-  return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([\w-]+)/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : '';
 };
 
 const BlogCMS = () => {
-  const [loggedIn, setLoggedIn] = useState(
-    () => localStorage.getItem('adminLoggedIn') === 'true'
-  );
+  const [loggedIn, setLoggedIn] = useState(() => localStorage.getItem('adminLoggedIn') === 'true');
   const [password, setPassword] = useState('');
 
   const [posts, setPosts] = useState(() => {
@@ -45,11 +43,8 @@ const BlogCMS = () => {
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files && e.target.files[0];
-    if (!file) {
-      setImage('');
-      return;
-    }
+    const file = e.target.files?.[0];
+    if (!file) return setImage('');
     const reader = new FileReader();
     reader.onloadend = () => setImage(reader.result);
     reader.readAsDataURL(file);
@@ -62,6 +57,7 @@ const BlogCMS = () => {
     setPublishDate('');
     setVideo('');
     setImage('');
+    setEditingIndex(null);
   };
 
   const handleSubmit = (e) => {
@@ -76,15 +72,13 @@ const BlogCMS = () => {
       image,
     };
 
+    const updatedPosts = [...posts];
     if (editingIndex !== null) {
-      const updated = [...posts];
-      updated[editingIndex] = newPost;
-      setPosts(updated);
-      setEditingIndex(null);
+      updatedPosts[editingIndex] = newPost;
     } else {
-      setPosts([...posts, newPost]);
+      updatedPosts.push(newPost);
     }
-
+    setPosts(updatedPosts);
     clearForm();
   };
 
@@ -101,10 +95,7 @@ const BlogCMS = () => {
 
   const handleDelete = (index) => {
     setPosts(posts.filter((_, i) => i !== index));
-    if (editingIndex === index) {
-      clearForm();
-      setEditingIndex(null);
-    }
+    if (editingIndex === index) clearForm();
   };
 
   if (!loggedIn) {
@@ -159,18 +150,9 @@ const BlogCMS = () => {
           value={video}
           onChange={(e) => setVideo(e.target.value)}
         />
-        <button type="submit">
-          {editingIndex !== null ? 'Save Post' : 'Add Post'}
-        </button>
+        <button type="submit">{editingIndex !== null ? 'Save Post' : 'Add Post'}</button>
         {editingIndex !== null && (
-          <button
-            type="button"
-            className="cancel-button"
-            onClick={() => {
-              setEditingIndex(null);
-              clearForm();
-            }}
-          >
+          <button type="button" className="cancel-button" onClick={clearForm}>
             Cancel
           </button>
         )}
@@ -178,10 +160,8 @@ const BlogCMS = () => {
 
       <div className="blog-list">
         {posts.map((p, index) => (
-          <div key={index} className="blog-item">
-            {p.image && (
-              <img src={p.image} alt={p.title} className="blog-image" />
-            )}
+          <div key={p.id} className="blog-item">
+            {p.image && <img src={p.image} alt={p.title || 'Post image'} className="blog-image" />}
             <h2>{p.title}</h2>
             <p>{p.summary}</p>
             {p.video && (
@@ -193,20 +173,8 @@ const BlogCMS = () => {
                 allowFullScreen
               ></iframe>
             )}
-            <button
-              type="button"
-              className="edit-button"
-              onClick={() => handleEdit(index)}
-            >
-              Edit
-            </button>
-            <button
-              type="button"
-              className="delete-button"
-              onClick={() => handleDelete(index)}
-            >
-              Delete
-            </button>
+            <button className="edit-button" onClick={() => handleEdit(index)}>Edit</button>
+            <button className="delete-button" onClick={() => handleDelete(index)}>Delete</button>
           </div>
         ))}
       </div>

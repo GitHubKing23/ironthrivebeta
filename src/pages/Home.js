@@ -1,23 +1,19 @@
 import React from 'react';
 import TailwindHero from '../components/TailwindHero';
+import heroImage from '../assets/hero.png';
 import AboutSection from '../components/AboutSection';
 import FeaturesSection from '../components/FeaturesSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import FinalCTA from '../components/FinalCTA';
-import heroImage from '../assets/hero.png'; // ✅ Correct image import
 
 const Home = () => {
   return (
     <div>
-<<<<<<< ours
-      <TailwindHero
-        backgroundImage={heroImage}
-        location="Your City"
-        trainerName="Your Trainer"
-      />
-=======
-      <TailwindHero backgroundImage={require('../assets/gymvid.gif')} location="Your City" trainerName="Your Trainer" />
->>>>>>> theirs
+      <TailwindHero backgroundImage={heroImage} location="Your City" trainerName="Your Trainer" />
+      
+      {/* Spacer to prevent overlap */}
+      <div className="h-16 md:h-24" />
+
       <AboutSection />
       <FeaturesSection />
       <TestimonialsSection />

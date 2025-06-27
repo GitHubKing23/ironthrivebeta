@@ -2,7 +2,7 @@
 .hero {
     position: relative;
     height: 100vh; /* Full viewport height */
-    background-image: url('../assets/gymvid.gif'); /* Add your GIF as the background */
+    background-image: url('../assets/hero.png'); /* Hero background */
     background-size: cover;
     background-position: center;
     display: flex;
