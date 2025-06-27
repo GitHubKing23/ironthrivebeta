@@ -1,10 +1,8 @@
 import React from 'react';
 import TailwindHero from '../components/TailwindHero';
 import heroImage from '../assets/hero.png';
-import AboutSection from '../components/AboutSection';
-import FeaturesSection from '../components/FeaturesSection';
-import TestimonialsSection from '../components/TestimonialsSection';
-import FinalCTA from '../components/FinalCTA';
+import BMICalculatorHome from '../components/BMICalculatorHome';
+import FeaturedBlogs from '../components/FeaturedBlogs';
 
 const Home = () => {
   return (
@@ -14,10 +12,8 @@ const Home = () => {
       {/* Spacer to prevent overlap */}
       <div className="h-16 md:h-24" />
 
-      <AboutSection />
-      <FeaturesSection />
-      <TestimonialsSection />
-      <FinalCTA />
+      <BMICalculatorHome />
+      <FeaturedBlogs />
     </div>
   );
 };

@@ -4,7 +4,6 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,47 +24,26 @@ const Navbar = () => {
 
         {/* Navbar Links */}
         <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-          <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
-          <li><Link to="/pricing" onClick={() => setIsMenuOpen(false)}>Pricing</Link></li>
-          <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
-          <li><Link to="/tool" onClick={() => setIsMenuOpen(false)}>BMI Tool</Link></li>
-          <li><Link to="/affiliates" onClick={() => setIsMenuOpen(false)}>Affiliates</Link></li>
-          
-          <li className="dropdown">
-            <span
-              className="dropdown-toggle"
-              onClick={() => setIsAdminOpen(!isAdminOpen)}
-            >
-              Admin ▾
-            </span>
-            <ul className={`dropdown-menu ${isAdminOpen ? 'show' : ''}`}>
-              <li>
-                <Link
-                  to="/admin/blog"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    setIsAdminOpen(false);
-                  }}
-                >
-                  Blog CMS
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/admin/affiliates"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    setIsAdminOpen(false);
-                  }}
-                >
-                  Affiliate CMS
-                </Link>
-              </li>
-            </ul>
+          <li>
+            <Link to="/" onClick={() => setIsMenuOpen(false)}>
+              Home
+            </Link>
           </li>
-
-          <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+          <li>
+            <Link to="/tool" onClick={() => setIsMenuOpen(false)}>
+              BMI Calculator
+            </Link>
+          </li>
+          <li>
+            <Link to="/blog" onClick={() => setIsMenuOpen(false)}>
+              Blog
+            </Link>
+          </li>
+          <li>
+            <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
+              Login
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
