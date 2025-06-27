@@ -1,0 +1,43 @@
+.home-bmi {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.home-bmi h2 {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+
+.bmi-form {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.bmi-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 150px;
+}
+
+.bmi-form button {
+  padding: 10px 20px;
+  background-color: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bmi-form button:hover {
+  background-color: var(--color-accent-dark);
+}
+
+.bmi-result {
+  font-weight: bold;
+}
+
