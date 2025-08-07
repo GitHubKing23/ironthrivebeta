@@ -12,6 +12,7 @@ test('renders navbar links including admin dropdown', () => {
   // Check top-level links
   expect(screen.getByText('Home')).toBeInTheDocument();
   expect(screen.getByText('Pricing')).toBeInTheDocument();
+  expect(screen.getByText('Shop')).toBeInTheDocument();
 
   // Use flexible matcher for "Admin ▾" to avoid exact text issues
   expect(screen.getByText((_, node) => node?.textContent === 'Admin ▾')).toBeInTheDocument();
@@ -22,4 +23,5 @@ test('renders navbar links including admin dropdown', () => {
   // Check dropdown links
   expect(screen.getByText(/blog cms/i)).toBeInTheDocument();
   expect(screen.getByText(/affiliate cms/i)).toBeInTheDocument();
+  expect(screen.getByText(/shop cms/i)).toBeInTheDocument();
 });

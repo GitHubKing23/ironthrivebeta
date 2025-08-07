@@ -1,0 +1,170 @@
+.section {
+  padding: 4rem 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.hero-bg-image {
+  background-image: url('../assets/hero.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.cta-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  background-color: #d94f04;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #a63800;
+}
+
+.home-bmi-section {
+  background: #fff8f0;
+}
+
+.home-blog-section {
+  background: #f0f4f8;
+}
+
+.home-affiliates-section {
+  background: #fff8f0;
+}
+
+.final-cta {
+  background: #fbe9e7;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+/* Rectangle button still supported */
+.final-cta .cta-button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  background-color: #d94f04;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.final-cta .cta-button:hover {
+  background-color: #a63800;
+}
+
+/* Circular button style */
+.cta-circle-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-image: linear-gradient(to right, #ff7043, #d94f04);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.cta-circle-button:hover {
+  background-image: linear-gradient(to right, #d94f04, #a63800);
+  transform: scale(1.1);
+}
+
+.image-button {
+  background-image: linear-gradient(to right, #ff7043, #d94f04);
+  color: #fff;
+}
+
+.more-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #d94f04;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.blog-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.blog-preview {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Header color alternation */
+.section h2:nth-of-type(odd) {
+  color: #d94f04;
+}
+
+.section h2:nth-of-type(even) {
+  color: #00796b;
+}
+
+/* Who We Are section */
+.who-we-are-section {
+  background-color: #f0f4f8;
+  padding: 3rem 1rem;
+}
+
+.who-we-are-section p {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: #333;
+}

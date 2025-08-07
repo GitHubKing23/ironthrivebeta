@@ -1,101 +1,102 @@
 /* src/styles/Home.css */
+
 .hero {
-    position: relative;
-    height: 100vh; /* Full viewport height */
-    background-image: url('../assets/hero.png'); /* Hero background */
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    overflow: hidden; /* Prevents any content from overflowing */
-  }
+  position: relative;
+  height: 100vh;
+  background-image: url('../assets/hero.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
 
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
-    z-index: 1; /* Overlay behind text */
-  }
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+  z-index: 1;
+}
 
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background to make text readable */
-    border-radius: 10px;
-  }
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
 
+/* Title Animation */
+.hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.hero-title.animate-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtitle Animation */
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.hero-subtitle.animate-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Call-to-Action Button */
+.cta-button {
+  font-size: 1.5rem;
+  padding: 15px 40px;
+  background-color: var(--color-accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(50px);
+  transition-delay: 0.5s;
+}
+
+.cta-button.animate-button {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cta-button:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .hero-title {
-    font-size: 4rem; /* Large text for the headline */
-    font-weight: 700;
-    margin-bottom: 15px;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-
-  .hero-title.animate-title {
-    opacity: 1;
-    transform: translateY(0);
+    font-size: 2.5rem;
   }
 
   .hero-subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-
-  .hero-subtitle.animate-subtitle {
-    opacity: 1;
-    transform: translateY(0);
+    font-size: 1.25rem;
   }
 
   .cta-button {
-    font-size: 1.5rem;
-    padding: 15px 40px;
-    background-color: var(--color-accent); /* Accent color for the button */
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    opacity: 0;
-    transform: translateY(50px);
-    transition-delay: 0.5s; /* Delay button animation */
+    font-size: 1.25rem;
+    padding: 12px 25px;
   }
-
-  .cta-button.animate-button {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .cta-button:hover {
-    background-color: var(--color-accent-dark); /* Slightly darker shade on hover */
-    transform: translateY(-3px);
-  }
-
-  /* Responsive design for smaller screens */
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2.5rem; /* Slightly smaller text on smaller screens */
-    }
-
-    .hero-subtitle {
-      font-size: 1.25rem;
-    }
-
-    .cta-button {
-      font-size: 1.25rem;
-      padding: 12px 25px;
-    }
-  }
+}

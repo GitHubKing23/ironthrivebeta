@@ -1,0 +1,39 @@
+.shop-cms-page {
+  padding: 2rem 1rem;
+}
+
+.shop-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 400px;
+}
+
+.shop-list {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.shop-item {
+  flex: 1;
+  min-width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #fff;
+}
+
+.shop-item img {
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.price {
+  font-weight: bold;
+}
+
+.delete-button {
+  margin-top: 0.5rem;
+}

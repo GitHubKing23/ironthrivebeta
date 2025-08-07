@@ -31,6 +31,7 @@ const Navbar = () => {
           <li><Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link></li>
           <li><Link to="/tool" onClick={() => setIsMenuOpen(false)}>BMI Tool</Link></li>
           <li><Link to="/affiliates" onClick={() => setIsMenuOpen(false)}>Affiliates</Link></li>
+          <li><Link to="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link></li>
           
           <li className="dropdown">
             <span
@@ -60,6 +61,17 @@ const Navbar = () => {
                   }}
                 >
                   Affiliate CMS
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/admin/shop"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsAdminOpen(false);
+                  }}
+                >
+                  Shop CMS
                 </Link>
               </li>
             </ul>
