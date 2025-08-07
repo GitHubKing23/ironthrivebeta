@@ -1,6 +1,7 @@
 // src/pages/BlogCMS.js
 import React, { useState, useEffect } from 'react';
 import '../styles/BlogCMS.css';
+import { defaultBlogPosts } from '../data/defaultBlogPosts';
 
 const ADMIN_PASSWORD = '7vY3p$92q';
 
@@ -16,7 +17,11 @@ const BlogCMS = () => {
 
   const [posts, setPosts] = useState(() => {
     const stored = localStorage.getItem('blogPosts');
-    return stored ? JSON.parse(stored) : [];
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed.length) return parsed;
+    }
+    return defaultBlogPosts;
   });
 
   const [title, setTitle] = useState('');
